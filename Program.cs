@@ -22,6 +22,22 @@ while (!salir)
     switch (opcion)
     {
         case "1":
+            Console.WriteLine();
+            Console.WriteLine("--- Registrar Producto ---");
+            string nombre = Validador.LeerTextoNoVacio("Nombre: ");
+            string categoria = Validador.LeerTextoNoVacio("Categoría: ");
+            decimal precio = Validador.LeerDecimalPositivo("Precio: ");
+            int stock = Validador.LeerEnteroNoNegativo("Stock inicial: ");
+
+            servicio.Crear(new Producto
+            {
+                Nombre = nombre,
+                Categoria = categoria,
+                Precio = precio,
+                Stock = stock
+            });
+            Console.WriteLine("Producto registrado correctamente.");
+            break;
 
         case "2":
           
@@ -30,6 +46,18 @@ while (!salir)
         case "4":
   
         case "5":
- 
+            salir = true;
+            break;
+
+        default:
+            Console.WriteLine("Opción no válida.");
+            break;
+    }
+
+    if (!salir)
+    {
+        Console.WriteLine();
+        Console.WriteLine("Presione cualquier tecla para continuar...");
+        Console.ReadKey();
     }
 }
