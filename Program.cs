@@ -59,7 +59,37 @@ while (!salir)
             break;
           
         case "3":
-            
+            Console.WriteLine();
+            Console.WriteLine("--- Actualizar Producto ---");
+            Console.Write("Ingrese el ID del producto a modificar: ");
+            if (int.TryParse(Console.ReadLine(), out int idActualizar))
+            {
+                var prod = servicio.ObtenerPorId(idActualizar);
+                if (prod == null)
+                {
+                    Console.WriteLine("Producto no encontrado.");
+                    break;
+                }
+
+                Console.Write($"Nuevo nombre ({prod.Nombre}): ");
+                string nuevoNombre = Console.ReadLine() ?? prod.Nombre;
+                Console.Write($"Nueva categoría ({prod.Categoria}): ");
+                string nuevaCat = Console.ReadLine() ?? prod.Categoria;
+                Console.Write($"Nuevo precio ({prod.Precio}): ");
+                decimal.TryParse(Console.ReadLine(), out decimal nuevoPrecio);
+                Console.Write($"Nuevo stock ({prod.Stock}): ");
+                int.TryParse(Console.ReadLine(), out int nuevoStock);
+
+                servicio.Actualizar(idActualizar, nuevoNombre, nuevaCat, nuevoPrecio, nuevoStock);
+                Console.WriteLine("Producto actualizado con éxito.");
+            }
+            else
+            {
+                Console.WriteLine("ID inválido.");
+            }
+            break;
+
+
         case "4":
   
         case "5":
