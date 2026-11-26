@@ -71,14 +71,10 @@ while (!salir)
                     break;
                 }
 
-                Console.Write($"Nuevo nombre ({prod.Nombre}): ");
-                string nuevoNombre = Console.ReadLine() ?? prod.Nombre;
-                Console.Write($"Nueva categoría ({prod.Categoria}): ");
-                string nuevaCat = Console.ReadLine() ?? prod.Categoria;
-                Console.Write($"Nuevo precio ({prod.Precio}): ");
-                decimal.TryParse(Console.ReadLine(), out decimal nuevoPrecio);
-                Console.Write($"Nuevo stock ({prod.Stock}): ");
-                int.TryParse(Console.ReadLine(), out int nuevoStock);
+                string nuevoNombre = Validador.LeerTextoNoVacio($"Nuevo nombre ({prod.Nombre}): ");
+                string nuevaCat = Validador.LeerTextoNoVacio($"Nueva categoría ({prod.Categoria}): ");
+                decimal nuevoPrecio = Validador.LeerDecimalPositivo($"Nuevo precio ({prod.Precio}): ");
+                int nuevoStock = Validador.LeerEnteroNoNegativo($"Nuevo stock ({prod.Stock}): ");
 
                 servicio.Actualizar(idActualizar, nuevoNombre, nuevaCat, nuevoPrecio, nuevoStock);
                 Console.WriteLine("Producto actualizado con éxito.");
