@@ -36,4 +36,14 @@ public class ProductoService
         _almacenamiento.Guardar(_productos);
         return true;
     }
+
+    public bool Eliminar(int id)
+    {
+        var producto = ObtenerPorId(id);
+        if (producto == null) return false;
+
+        _productos.Remove(producto);
+        _almacenamiento.Guardar(_productos);
+        return true;
+    }
 }
