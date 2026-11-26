@@ -89,9 +89,23 @@ while (!salir)
             }
             break;
 
-
         case "4":
-  
+            Console.WriteLine();
+            Console.WriteLine("--- Eliminar Producto ---");
+            Console.Write("Ingrese el ID del producto a eliminar: ");
+            if (int.TryParse(Console.ReadLine(), out int idEliminar))
+            {
+                bool eliminado = servicio.Eliminar(idEliminar);
+                Console.WriteLine(eliminado
+                    ? "Producto eliminado correctamente."
+                    : "No se encontró un producto con ese ID.");
+            }
+            else
+            {
+                Console.WriteLine("ID inválido.");
+            }
+            break;
+
         case "5":
             salir = true;
             break;
