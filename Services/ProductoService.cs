@@ -18,4 +18,22 @@ public class ProductoService
         _productos.Add(nuevo);
         _almacenamiento.Guardar(_productos);
     }
+
+    public List<Producto> ObtenerTodos() => _productos;
+
+    public Producto? ObtenerPorId(int id) => _productos.FirstOrDefault(p => p.Id == id);
+
+    public bool Actualizar(int id, string nombre, string categoria, decimal precio, int stock)
+    {
+        var existente = ObtenerPorId(id);
+        if (existente == null) return false;
+
+        existente.Nombre = nombre;
+        existente.Categoria = categoria;
+        existente.Precio = precio;
+        existente.Stock = stock;
+
+        _almacenamiento.Guardar(_productos);
+        return true;
+    }
 }
