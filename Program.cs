@@ -40,6 +40,23 @@ while (!salir)
             break;
 
         case "2":
+            Console.WriteLine();
+            Console.WriteLine("--- Lista de Productos ---");
+            var lista = servicio.ObtenerTodos();
+            if (lista.Count == 0)
+            {
+                Console.WriteLine("No hay productos registrados.");
+            }
+            else
+            {
+                Console.WriteLine($"{"ID",-5} {"Nombre",-20} {"Categoría",-15} {"Precio",-12} {"Stock",-6}");
+                Console.WriteLine(new string('-', 62));
+                foreach (var p in lista)
+                {
+                    Console.WriteLine($"{p.Id,-5} {p.Nombre,-20} {p.Categoria,-15} {p.Precio,-12:C2} {p.Stock,-6}");
+                }
+            }
+            break;
           
         case "3":
             
